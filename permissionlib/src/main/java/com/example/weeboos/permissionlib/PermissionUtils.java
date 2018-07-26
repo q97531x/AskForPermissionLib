@@ -50,7 +50,7 @@ public class PermissionUtils {
      * @param permissions       所有请求的权限
      * @return      是否点击了不再询问按钮
      */
-    public static boolean isAsk(Context context, @NonNull String... permissions) {
+    public static boolean isNeverAsk(Context context, @NonNull String... permissions) {
         if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
             for(String permissionName : permissions) {
                 if(((Activity)context).shouldShowRequestPermissionRationale(permissionName)){
@@ -100,42 +100,5 @@ public class PermissionUtils {
             }
         }
         return deniedPermissions;
-    }
-
-    public static String getSystem(){
-        String SYS = "";
-        try {
-            Properties prop= new Properties();
-            prop.load(new FileInputStream(new File(Environment.getRootDirectory(), "build.prop")));
-            if(prop.getProperty(KEY_MIUI_VERSION_CODE, null) != null
-                    || prop.getProperty(KEY_MIUI_VERSION_NAME, null) != null
-                    || prop.getProperty(KEY_MIUI_INTERNAL_STORAGE, null) != null){
-                SYS = SYS_MIUI;//小米
-            }else if(prop.getProperty(KEY_EMUI_API_LEVEL, null) != null
-                    ||prop.getProperty(KEY_EMUI_VERSION, null) != null
-                    ||prop.getProperty(KEY_EMUI_CONFIG_HW_SYS_VERSION, null) != null){
-                SYS = SYS_EMUI;//华为
-            }else if(getMeizuFlymeOSFlag().toLowerCase().contains("flyme")){
-                SYS = SYS_FLYME;//魅族
-            }
-        } catch (IOException e){
-            e.printStackTrace();
-            return SYS;
-        }
-        return SYS;
-    }
-
-    public static String getMeizuFlymeOSFlag() {
-        return getSystemProperty("ro.build.display.id", "");
-    }
-
-    private static String getSystemProperty(String key, String defaultValue) {
-        try {
-            Class<?> clz = Class.forName("android.os.SystemProperties");
-            Method get = clz.getMethod("get", String.class, String.class);
-            return (String)get.invoke(clz, key, defaultValue);
-        } catch (Exception e) {
-        }
-        return defaultValue;
     }
 }

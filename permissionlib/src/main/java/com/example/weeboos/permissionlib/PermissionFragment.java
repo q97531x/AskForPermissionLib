@@ -44,7 +44,7 @@ public class PermissionFragment extends Fragment {
             if (PermissionUtils.hasPermission(getContext(), permissions)) {
                 listener.permissionGranted();
             } else {
-                if (PermissionUtils.isAsk(getContext(), permissions)) {
+                if (PermissionUtils.isNeverAsk(getContext(), permissions)) {
                     listener.permissionNeverAsk(PermissionUtils.getNeverAskPermissions(getContext(), permissions));
                 } else {
                     listener.permissionDenied(PermissionUtils.getDeniedPermissions(getContext(), permissions));
