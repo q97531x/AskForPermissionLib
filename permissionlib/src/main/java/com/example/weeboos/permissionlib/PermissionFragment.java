@@ -18,14 +18,7 @@ import android.view.ViewGroup;
  */
 public class PermissionFragment extends Fragment {
     private static final int PERMISSIONS_REQUEST_CODE = 42;
-    private static PermissionRequest.PermissionListener listener;
-
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.permission_lib_fragment_permission,container,false);
-        return view;
-    }
+    private PermissionRequest.PermissionListener listener;
 
     public void requestPermissions(String[] permissions, PermissionRequest.PermissionListener listener) {
         this.listener = listener;

@@ -2,10 +2,15 @@ package com.example.weeboos.permissionlib;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v4.content.PermissionChecker;
+import android.support.v7.app.AlertDialog;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -100,5 +105,45 @@ public class PermissionUtils {
             }
         }
         return deniedPermissions;
+    }
+
+    public static void showAlertDialog(final Context context, String permissions) {
+        new AlertDialog.Builder(context).setMessage(String.format("需要%s权限，请前往设置", permissions))
+                .setPositiveButton("前往设置", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        goToSetting(context);
+                    }
+                }).show();
+    }
+
+    /**
+     * 跳转前往设置
+     */
+    private static void goToSetting(Context context) {
+        Intent intent = new Intent();
+        intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+        Uri uri = Uri.fromParts("package", context.getPackageName(), null);
+        intent.setData(uri);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 将List转换成String字符
+     * @param permissions 权限list
+     * @return 拼接后的字符串
+     */
+    public static String translateArrayString(ArrayList<String> permissions) {
+        if(permissions.size()==1)
+            return permissions.get(0);
+        String permissionNames = "";
+        for (int i = 0; i < permissions.size();i++) {
+            //最后一次循环
+            if(i == permissions.size() - 1) {
+                permissionNames = permissionNames + permissions.get(i);
+            }
+            permissionNames = permissionNames + permissions.get(i)+",";
+        }
+        return permissionNames;
     }
 }

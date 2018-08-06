@@ -2,13 +2,13 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.novoda.bintray-release'//添加
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 26
 
 
 
     defaultConfig {
-        minSdkVersion 10
-        targetSdkVersion 28
+        minSdkVersion 11
+        targetSdkVersion 26
         versionCode 1
         versionName "1.0"
 
@@ -28,7 +28,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation 'com.android.support:appcompat-v7:28.0.0-alpha3'
+    implementation 'com.android.support:appcompat-v7:26.1.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
@@ -39,7 +39,7 @@ publish {
     userOrg = 'q97531x'//bintray.com用户名
     groupId = 'com.example.weeboos'//jcenter上的路径
     artifactId = 'permissionLib'//项目名称
-    publishVersion = '1.1.0'//版本号
+    publishVersion = '1.1.4'//版本号
     desc = '一个动态获取权限库'//描述，不重要
     website = 'https://github.com/q97531x/AskForPermissionLib'//网站，不重要；尽量模拟github上的地址，例如我这样的；当然你有地址最好了
 }

@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.weeboos.permissionlib.PermissionRequest;
+import com.example.weeboos.permissionlib.PermissionUtils;
 
 import java.util.ArrayList;
 
@@ -48,32 +49,11 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void permissionNeverAsk(ArrayList<String> permissions) {
                         Toast.makeText(MainActivity.this,"不再询问",Toast.LENGTH_SHORT).show();
-                        showAlertDialog();
+                        PermissionUtils.showAlertDialog(MainActivity.this,PermissionUtils.translateArrayString(permissions));
                     }
                 },permissionNames);
             }
         });
-    }
-
-    private void showAlertDialog() {
-        new AlertDialog.Builder(this).setMessage("前往设置")
-                .setPositiveButton("前往设置", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        goToSetting();
-                    }
-                }).show();
-    }
-
-    /**
-     * 跳转前往设置
-     */
-    private void goToSetting() {
-        Intent intent = new Intent();
-        intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-        Uri uri = Uri.fromParts("package", getPackageName(), null);
-        intent.setData(uri);
-        startActivity(intent);
     }
 
 
