@@ -12,16 +12,30 @@ import java.util.ArrayList;
  * */
 public class PermissionRequest {
     private static final String TAG = PermissionRequest.class.getSimpleName();
-    private PermissionFragment fragment;
+    private static PermissionFragment fragment;
 
-    public PermissionRequest(FragmentActivity activity) {
-        if(fragment == null) {
-            fragment = getFragmentInstance(activity.getSupportFragmentManager());
+    private static PermissionRequest permissionRequest;
+
+    public static PermissionRequest getInstance(FragmentActivity activity){
+        if(permissionRequest == null) {
+            permissionRequest = new PermissionRequest(activity);
         }
+        return permissionRequest;
     }
 
-    public PermissionRequest(Fragment fragment) {
-        this.fragment = getFragmentInstance(fragment.getChildFragmentManager());
+    public static PermissionRequest getInstance(Fragment fragment){
+        if(permissionRequest == null) {
+            permissionRequest = new PermissionRequest(fragment);
+        }
+        return permissionRequest;
+    }
+
+    private PermissionRequest(FragmentActivity activity) {
+        fragment = getFragmentInstance(activity.getSupportFragmentManager());
+    }
+
+    private PermissionRequest(Fragment fragment) {
+        PermissionRequest.fragment = getFragmentInstance(fragment.getChildFragmentManager());
     }
 
 

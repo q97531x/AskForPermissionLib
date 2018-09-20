@@ -31,11 +31,10 @@ public class MainActivity extends AppCompatActivity {
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 Manifest.permission.CAMERA
         };
-        request = new PermissionRequest(this);
         findViewById(R.id.tv_ask).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                request.requestPermission(new PermissionRequest.PermissionListener() {
+                PermissionRequest.getInstance(MainActivity.this).requestPermission(new PermissionRequest.PermissionListener() {
                     @Override
                     public void permissionGranted() {
                         Toast.makeText(MainActivity.this,"获取成功",Toast.LENGTH_SHORT).show();
