@@ -39,7 +39,7 @@ publish {
     userOrg = 'q97531x'//bintray.com用户名
     groupId = 'com.example.weeboos'//jcenter上的路径
     artifactId = 'permissionLib'//项目名称
-    publishVersion = '1.1.5'//版本号
+    publishVersion = '1.1.6'//版本号
     desc = '一个动态获取权限库'//描述，不重要
     website = 'https://github.com/q97531x/AskForPermissionLib'//网站，不重要；尽量模拟github上的地址，例如我这样的；当然你有地址最好了
 }

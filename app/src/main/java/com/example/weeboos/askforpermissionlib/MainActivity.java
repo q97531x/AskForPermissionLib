@@ -28,13 +28,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         final String[] permissionNames = new String[]{
-                Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                Manifest.permission.CAMERA
+                Manifest.permission.INSTALL_PACKAGES,
         };
         findViewById(R.id.tv_ask).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                PermissionRequest.getInstance(MainActivity.this).requestPermission(new PermissionRequest.PermissionListener() {
+                PermissionRequest.getInstance().build(MainActivity.this).requestPermission(new PermissionRequest.PermissionListener() {
                     @Override
                     public void permissionGranted() {
                         Toast.makeText(MainActivity.this,"获取成功",Toast.LENGTH_SHORT).show();
