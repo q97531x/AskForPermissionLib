@@ -1,5 +1,6 @@
 package com.example.weeboos.permissionlib;
 
+import android.app.Activity;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;

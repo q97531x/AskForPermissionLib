@@ -11,16 +11,16 @@ allprojects {
         jcenter()
     }
 }
-implementation 'com.example.weeboos:permissionLib:1.1.4'
+implementation 'com.example.weeboos:permissionLib:1.1.6'
 ```
 # Useage
-create a PermissionRequest instance
+get a request singleton
 ```
-PermissionRequest request = new PermissionRequest(this); // where this is an Activity or Fragment instance
+PermissionRequest.getInstance().build(MainActivity.this); // where this is an Activity or Fragment instance
 ```
 Example：request the CAMERA Permission
 ```
-request.requestPermission(new PermissionRequest.PermissionListener() {
+PermissionRequest.getInstance().build(MainActivity.this).requestPermission(new PermissionRequest.PermissionListener() {
                     @Override
                     public void permissionGranted() {
                        //do Something when permission granted
@@ -43,7 +43,7 @@ request.requestPermission(new PermissionRequest.PermissionListener() {
 ```
 request some permissions like the CAMERA and WRITE_EXTERNAL_STORAGE
 ```
-request.requestPermission(new PermissionRequest.PermissionListener() {
+PermissionRequest.getInstance().build(MainActivity.this).requestPermission(new PermissionRequest.PermissionListener() {
                     @Override
                     public void permissionGranted() {
                        //do Something when permission granted
