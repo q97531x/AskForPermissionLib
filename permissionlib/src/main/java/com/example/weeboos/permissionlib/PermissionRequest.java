@@ -23,7 +23,7 @@ public class PermissionRequest {
         return permissionRequest;
     }
 
-    public PermissionRequest() {
+    private PermissionRequest() {
     }
 
     public PermissionRequest build(FragmentActivity activity) {
